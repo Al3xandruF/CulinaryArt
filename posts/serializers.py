@@ -25,4 +25,5 @@ class PostSerializer(serializers.ModelSerializer):
             "title",
             "content",
             "image",
+            "image_filter"
         ]
