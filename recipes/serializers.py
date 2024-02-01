@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Recipe
+from recipes.models import Recipe
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -20,6 +20,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = (
+            "id",
             "owner",
             "created_at",
             "updated_at",
