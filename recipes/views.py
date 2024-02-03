@@ -8,7 +8,8 @@ from .serializers import RecipeSerializer
 
 class RecipeList(generics.ListCreateAPIView):
     """
-    API endpoint for listing and creating new added Recipe instances.
+    List posts or create a post if logged in
+    The perform_create method associates the post with the logged in user.
     """
 
     serializer_class = RecipeSerializer
@@ -46,9 +47,9 @@ class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve a post and edit or delete it if you own it.
     """
 
-    serializer_class = PostSerializer
+    serializer_class = RecipeSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Post.objects.annotate(
+    queryset = Recipe.objects.annotate(
         likes_count=Count("likes", distinct=True),
-        comments_count=Count("comment", distinct=True),
+        comments_count=Count("recipecomment", distinct=True),
     ).order_by("-created_at")
