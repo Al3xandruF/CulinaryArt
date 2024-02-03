@@ -16,7 +16,7 @@ class RecipeList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Recipe.objects.annotate(
         likes_count=Count("likes", distinct=True),
-        comments_count=Count("comment", distinct=True),
+        comments_count=Count("recipecomment", distinct=True),
     ).order_by("-created_at")
     filter_backends = [
         filters.OrderingFilter,
