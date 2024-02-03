@@ -1,5 +1,5 @@
 from django.urls import path
-from job_posts import views
+from recipes import views
 
 urlpatterns = [
     path("recipes/", views.RecipeList.as_view()),

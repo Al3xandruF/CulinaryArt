@@ -6,7 +6,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
     title = serializers.CharField(max_length=255)
-    description = serializers.TextField()
+    description = serializers.CharField(max_length=None)
     preparation = serializers.IntegerField()
     cook = serializers.IntegerField()
     difficulty = serializers.CharField(max_length=50)
