@@ -52,7 +52,7 @@ SECRET_KEY = "django-insecure-p3+qdk5gjjylx@ys#pc*(ldsz99=7iy&eg17ggk&hpv4^09ere
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["8000-al3xandruf-culinaryart-23a2kllqq1e.ws-eu107.gitpod.io"]
+ALLOWED_HOSTS = ["8000-al3xandruf-culinaryart-23a2kllqq1e.ws-eu108.gitpod.io"]
 
 
 # Application definition
