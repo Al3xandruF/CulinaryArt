@@ -6,7 +6,7 @@ from .models import Recipe
 from .serializers import RecipeSerializer
 
 
-class RecipeDetailList(generics.ListCreateAPIView):
+class RecipeList(generics.ListCreateAPIView):
     """
     API endpoint for listing and creating new added Recipe instances.
     """
