@@ -5,23 +5,34 @@ from recipes.models import Recipe
 class RecipeSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
-    title = serializers.CharField(max_length=255)
-    description = serializers.CharField(max_length=None)
-    preparation = serializers.IntegerField()
-    cook = serializers.IntegerField()
-    difficulty = serializers.CharField(max_length=50)
-    servings = serializers.IntegerField()
-    calories = serializers.IntegerField()
+    profile_id = serializers.ReadOnlyField(source="owner.profile.id")
+    profile_image = serializers.ReadOnlyField(source="owner.profile.image.url")
+    like_id = serializers.SerializerMethodField()
+    likes_count = serializers.ReadOnlyField()
+    comments_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         request = self.context["request"]
         return request.user == obj.owner
+
+    def get_like_id(self, obj):
+        user = self.context["request"].user
+        if user.is_authenticated:
+            like = Like.objects.filter(owner=user, job_post=obj).first()
+            return like.id if like else None
+        return None
 
     class Meta:
         model = Recipe
         fields = (
             "id",
             "owner",
+            "is_owner",
+            "profile_id",
+            "profile_image",
+            "like_id",
+            "likes_count",
+            "comments_count",
             "created_at",
             "updated_at",
             "title",
