@@ -20,7 +20,11 @@ class ProfileList(generics.ListAPIView):
     serializer_class = ProfileSerializer
     filter_backends = [
         filters.OrderingFilter,
+        filters.SearchFilter,
         DjangoFilterBackend,
+    ]
+    search_fields = [
+        "owner__username",
     ]
     filterset_fields = [
         "owner__following__followed__profile",
