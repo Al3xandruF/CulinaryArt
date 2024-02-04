@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from culinaryart.permissions import IsOwnerOrReadOnly
 from .models import Recipe
 from .serializers import RecipeSerializer
+from comments.models import Comment
 
 
 class RecipeList(generics.ListCreateAPIView):
@@ -16,7 +17,7 @@ class RecipeList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Recipe.objects.annotate(
         likes_count=Count("likes", distinct=True),
-        comments_count=Count("recipecomment", distinct=True),
+        comments_count=Count("comment", distinct=True),
     ).order_by("-created_at")
     filter_backends = [
         filters.OrderingFilter,
@@ -50,6 +51,6 @@ class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecipeSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Recipe.objects.annotate(
-        comments_count=Count("recipecomment", distinct=True),
+        comments_count=Count("comment", distinct=True),
         likes_count=Count("likes", distinct=True),
     ).order_by("-created_at")
