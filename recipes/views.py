@@ -50,6 +50,6 @@ class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecipeSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Recipe.objects.annotate(
-        likes_count=Count("likes", distinct=True),
         comments_count=Count("recipecomment", distinct=True),
+        likes_count=Count("likes", distinct=True),
     ).order_by("-created_at")
