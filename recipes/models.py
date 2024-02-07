@@ -7,16 +7,38 @@ class Recipe(models.Model):
     Recipe model, related to 'owner'
     """
 
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    difficulty_choices = [
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+        ("5", "5"),
+    ]
+
+    image_filter_choices = []
+
+    owner = models.ForeignKey(Chef, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
-    preparation = models.IntegerField()
-    cook = models.IntegerField()
-    difficulty = models.CharField(max_length=50)
+    recipe_title = models.CharField(max_length=255)
+    recipe_description = models.TextField(blank=True)
+    recipe_preparation = models.IntegerField()
+    cooking_time = models.DurationField()
+    difficulty = models.CharField(
+        max_length=50,
+        choices=difficulty_choices,
+        default=1,
+    )
     servings = models.IntegerField()
     calories = models.IntegerField()
+    image = models.ImageField(
+        choices=image_filter_choices,
+        upload_to=None,
+        height_field=None,
+        width_field=None,
+        max_length=32,
+        default="normal",
+    )
 
     class Meta:
         ordering = ["-created_at"]
