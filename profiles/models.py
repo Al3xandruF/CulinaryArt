@@ -10,6 +10,15 @@ class Profile(models.Model):
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(upload_to="images/", default="../profile_c2bceg")
+    user_type = models.CharField(max_length=255, blank=True)
+
+    USER_TYPE_CHOICES = [
+        ("regular", "Regular User"),
+        ("chef", "Chef"),
+    ]
+    user_type = models.CharField(
+        max_length=10, choices=USER_TYPE_CHOICES, default="regular"
+    )
 
     class Meta:
         ordering = ["-created_at"]
