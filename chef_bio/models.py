@@ -10,9 +10,9 @@ class ChefBio(models.Model):
     chef_title = models.CharField(max_length=255, blank=True)
     place_of_birth = models.CharField(max_length=255, blank=True)
     cooking_school = models.CharField(max_length=255, blank=True)
-    speciality_dish = models.TextField(blank=True)
+    speciality_dish = models.CharField(max_length=255, blank=True)
     achievements = models.TextField(blank=True)
-    web_address = models.CharField(max_length=255, blank=True)
+    web_address = models.models.EmailField(max_length=254, blank=True)
 
     def __str__(self):
         return f"{self.owner}'s Chef Bio"
