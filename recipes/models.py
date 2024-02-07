@@ -23,6 +23,7 @@ class Recipe(models.Model):
     recipe_title = models.CharField(max_length=255)
     recipe_description = models.TextField(blank=True)
     recipe_preparation = models.IntegerField()
+    ingredients = models.TextField(blank=True)
     cooking_time = models.DurationField()
     difficulty = models.CharField(
         max_length=50,
