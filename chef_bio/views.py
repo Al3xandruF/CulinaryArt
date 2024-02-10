@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics, permissions
-from devexchange.permissions import IsChefOrReadOnly, IsOwnerOrReadOnly
+from culinaryart.permissions import IsChefOrReadOnly, IsOwnerOrReadOnly
 from .models import ChefBio
 from .serializers import ChefBioSerializer
 

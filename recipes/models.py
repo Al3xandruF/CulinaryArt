@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from chef_bio.models import ChefBio
 
 
 class Recipe(models.Model):
@@ -17,12 +17,11 @@ class Recipe(models.Model):
 
     image_filter_choices = []
 
-    owner = models.ForeignKey(Chef, on_delete=models.CASCADE)
+    owner = models.ForeignKey(ChefBio, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     recipe_title = models.CharField(max_length=255)
     recipe_description = models.TextField(blank=True)
-    recipe_preparation = models.IntegerField()
     ingredients = models.TextField(blank=True)
     cooking_time = models.DurationField()
     difficulty = models.CharField(
@@ -40,6 +39,7 @@ class Recipe(models.Model):
         max_length=32,
         default="normal",
     )
+    recipe_preparation = models.TextField(blank=True)
 
     class Meta:
         ordering = ["-created_at"]

@@ -13,11 +13,11 @@ class Profile(models.Model):
     user_type = models.CharField(max_length=255, blank=True)
 
     USER_TYPE_CHOICES = [
-        ("regular", "Regular User"),
-        ("chef", "Chef"),
+        ("regular user", "regular user"),
+        ("chef", "chef"),
     ]
     user_type = models.CharField(
-        max_length=10, choices=USER_TYPE_CHOICES, default="regular"
+        max_length=10, choices=USER_TYPE_CHOICES, default="regular user"
     )
 
     class Meta:

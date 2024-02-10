@@ -3,7 +3,7 @@ from django.db.models import Count
 from django.http import Http404
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
-from devexchange.permissions import IsOwnerOrReadOnly
+from culinaryart.permissions import IsOwnerOrReadOnly
 from .models import RecipeComment, RecipeCommentReply
 from .serializers import (
     RecipeCommentSerializer,
