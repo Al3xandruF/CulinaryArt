@@ -76,11 +76,11 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "dj_rest_auth.registration",
     "profiles",
-    "posts",
     "comments",
     "likes",
     "followers",
     "recipes",
+    "chef_bio",
 ]
 SITE_ID = 1
 MIDDLEWARE = [

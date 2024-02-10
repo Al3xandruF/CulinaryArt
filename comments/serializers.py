@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Comment
+from .models import RecipeComment, RecipeCommentReply
+from likes.models import RecipeLike, RecipeCommentLike
 
 
 class RecipeCommentSerializer(serializers.ModelSerializer):

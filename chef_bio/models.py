@@ -1,5 +1,5 @@
 from django.db import models
-from models.profiles import Profile
+from profiles.models import Profile
 
 
 class ChefBio(models.Model):

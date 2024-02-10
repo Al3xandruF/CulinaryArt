@@ -1,7 +1,11 @@
 from rest_framework import generics, permissions
 from culinaryart.permissions import IsOwnerOrReadOnly
-from likes.models import Like
-from likes.serializers import LikeSerializer
+from likes.models import RecipeLike, RecipeCommentLike, RecipeSaved
+from likes.serializers import (
+    RecipeLikeSerializer,
+    RecipeCommentLikeSerializer,
+    RecipeSavedSerializer,
+)
 
 
 class LikeList(generics.ListCreateAPIView):
