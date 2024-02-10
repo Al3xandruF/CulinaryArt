@@ -8,29 +8,6 @@ from likes.serializers import (
 )
 
 
-class LikeList(generics.ListCreateAPIView):
-    """
-    List likes or create a like if logged in.
-    """
-
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    serializer_class = LikeSerializer
-    queryset = Like.objects.all()
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-
-class LikeDetail(generics.RetrieveDestroyAPIView):
-    """
-    Retrieve a like or delete it by id if you own it.
-    """
-
-    permission_classes = [IsOwnerOrReadOnly]
-    serializer_class = LikeSerializer
-    queryset = Like.objects.all()
-
-
 class RecipeLikeList(generics.ListCreateAPIView):
     """
     API endpoint for listing all recipe likes and create a

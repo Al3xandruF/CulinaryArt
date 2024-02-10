@@ -1,22 +1,22 @@
 from django.db.models import Count
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from culinaryart.permissions import IsOwnerOrReadOnly
+from culinaryart.permissions import IsOwnerOrReadOnly, IsChefOrReadOnly
 from .models import Recipe
 from .serializers import RecipeSerializer
-from comments.models import Comment
 
 
 class RecipeList(generics.ListCreateAPIView):
     """
-    List posts or create a post if logged in
-    The perform_create method associates the post with the logged in user.
+    API endpoint for listing and create Recipe instances.
     """
 
     serializer_class = RecipeSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [IsChefOrReadOnly]
     queryset = Recipe.objects.annotate(
         likes_count=Count("likes", distinct=True),
+        saved_count=Count("saved", distinct=True),
         comments_count=Count("comment", distinct=True),
     ).order_by("-created_at")
     filter_backends = [
