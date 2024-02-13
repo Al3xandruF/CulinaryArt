@@ -31,7 +31,8 @@ class RecipeList(generics.ListCreateAPIView):
     ]
     search_fields = [
         "owner__username",
-        "title",
+        "recipe_title",
+        "servings",
     ]
     ordering_fields = [
         "likes_count",
