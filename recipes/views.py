@@ -17,7 +17,7 @@ class RecipeList(generics.ListCreateAPIView):
     queryset = Recipe.objects.annotate(
         likes_count=Count("likes", distinct=True),
         saved_count=Count("saved", distinct=True),
-        comments_count=Count("comment", distinct=True),
+        comments_count=Count("recipecomment", distinct=True),
     ).order_by("-created_at")
     filter_backends = [
         filters.OrderingFilter,
@@ -51,6 +51,7 @@ class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecipeSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Recipe.objects.annotate(
-        comments_count=Count("comment", distinct=True),
+        comments_count=Count("recipecomment", distinct=True),
         likes_count=Count("likes", distinct=True),
+        saved_count=Count("saved", distinct=True),
     ).order_by("-created_at")
