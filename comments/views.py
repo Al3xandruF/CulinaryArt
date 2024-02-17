@@ -54,10 +54,8 @@ class RecipeCommentReplyList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
     def get_queryset(self):
-        parent_comment_id = self.kwargs["parent_comment_id"]
-        queryset = RecipeCommentReply.objects.filter(
-            parent_comment__id=parent_comment_id
-        )
+        main_comment_id = self.kwargs["main_comment_id"]
+        queryset = RecipeCommentReply.objects.filter(main_comment__id=main_comment_id)
         return queryset
 
     def list(self, request, *args, **kwargs):
@@ -66,7 +64,7 @@ class RecipeCommentReplyList(generics.ListCreateAPIView):
         if queryset.exists():
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        elif RecipeComment.objects.filter(id=self.kwargs["parent_comment_id"]).exists():
+        elif RecipeComment.objects.filter(id=self.kwargs["main_comment_id"]).exists():
             return Response([], status=status.HTTP_200_OK)
         else:
             return Response(
@@ -74,10 +72,10 @@ class RecipeCommentReplyList(generics.ListCreateAPIView):
             )
 
     def perform_create(self, serializer):
-        # Associating the reply with a parent comment
-        parent_comment_id = self.kwargs["parent_comment_id"]
-        parent_comment = RecipeComment.objects.get(pk=parent_comment_id)
-        serializer.save(owner=self.request.user, parent_comment=parent_comment)
+        # Associating the reply with a main comment
+        main_comment_id = self.kwargs["main_comment_id"]
+        main_comment = RecipeComment.objects.get(pk=main_comment_id)
+        serializer.save(owner=self.request.user, main_comment=main_comment)
 
 
 class RecipeCommentReplyDetail(generics.RetrieveUpdateDestroyAPIView):
