@@ -9,7 +9,7 @@ urlpatterns = [
         views.RecipeCommentReplyList.as_view(),
     ),
     path(
-        "recipe-comment-replies/<int:parent_comment_id>/<int:pk>/",
+        "recipe-comment-replies/<int:main_comment_id>/<int:pk>/",
         views.RecipeCommentReplyDetail.as_view(),
     ),
 ]

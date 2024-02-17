@@ -38,9 +38,9 @@ class RecipeCommentSerializer(serializers.ModelSerializer):
 
     def get_replies(self, obj):
         # Retrieve the replies for this comment using Comment/Reply model
-        replies_comment_model = RecipeComment.objects.filter(parent_comment=obj)
+        replies_comment_model = RecipeComment.objects.filter(main_comment=obj)
 
-        replies_reply_model = RecipeCommentReply.objects.filter(parent_comment=obj)
+        replies_reply_model = RecipeCommentReply.objects.filter(main_comment=obj)
 
         reply_content_comment_model = [reply.content for reply in replies_comment_model]
 
@@ -93,7 +93,7 @@ class RecipeCommentReplySerializer(serializers.ModelSerializer):
             "owner",
             "created_at",
             "updated_at",
-            "parent_comment",
+            "main_comment",
             "content",
             "profile_image",
             "profile_id",
