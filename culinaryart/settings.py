@@ -75,8 +75,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "cloudinary_storage",
     "django.contrib.staticfiles",
+    "cloudinary_storage",
     "cloudinary",
     "rest_framework",
     "django_filters",
@@ -137,6 +137,7 @@ WSGI_APPLICATION = "culinaryart.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if "DEV" in os.environ:
+    print("dev environment")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -144,6 +145,7 @@ if "DEV" in os.environ:
         }
     }
 else:
+    print("prod environment")
     DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 # Password validation
