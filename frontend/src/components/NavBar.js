@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 
 const NavBar = () => {
   return (
-    <Navbar expand="md" fixed="top" bg="dark" variant="dark">
+    <Navbar expand="md" fixed="top" bg="warning" variant="light">
       <Container>
         <Navbar.Brand>
           <img src={logo} alt="logo" height="50" />
@@ -12,9 +12,15 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link><i class="fa-solid fa-house-chimney-user"></i>Home</Nav.Link>
-            <Nav.Link><i class="fa-solid fa-door-open"></i>Sign In</Nav.Link>
-            <Nav.Link><i class="fa-solid fa-user-plus"></i>Sign Up</Nav.Link>
+            <Nav.Link>
+              <i class="fa-solid fa-house-chimney-user"></i>Home
+            </Nav.Link>
+            <Nav.Link>
+              <i class="fa-solid fa-door-open"></i>Sign In
+            </Nav.Link>
+            <Nav.Link>
+              <i class="fa-solid fa-user-plus"></i>Sign Up
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
