@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import RecipeComment, RecipeCommentReply
 
-# Register your models here.
+admin.site.register(RecipeComment)
+admin.site.register(RecipeCommentReply)
