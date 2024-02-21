@@ -66,6 +66,9 @@ ALLOWED_HOSTS = [
     "localhost",
 ]
 
+CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -106,11 +109,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
-
-CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
-
-CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = "culinaryart.urls"
 
