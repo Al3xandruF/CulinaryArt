@@ -19,7 +19,7 @@
   text-align: center;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #2142b2;
+  color: #663d16;
 }
 
 .Link {
@@ -27,6 +27,7 @@
   text-align: center;
   display: block;
   margin: auto;
+  
 }
 
 .Link span {
@@ -43,4 +44,9 @@
 
 .SignUpCol {
   height: 375px;
+}
+
+.Submit {
+  background-color: #663d16;
+  border-color: #663d16;
 }
