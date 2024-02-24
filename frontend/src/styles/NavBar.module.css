@@ -1,3 +1,13 @@
 .NavBar {
-    background-color: #EBB833;
+  background-color: #ebb833;
+}
+.NavLink {
+  padding: 10px;
+}
+
+.NavLink:hover {
+  color: #663d16;
+}
+.Active {
+  color: #663d16;
 }
