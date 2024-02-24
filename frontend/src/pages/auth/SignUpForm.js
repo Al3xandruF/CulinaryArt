@@ -44,7 +44,9 @@ const SignUpForm = () => {
               />
             </Form.Group>
 
-            <Button className={styles.Submit}>Sign Up</Button>
+            <Button className={`${styles.Submit} ${btnStyles.Wide}`}>
+              Sign Up
+            </Button>
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
