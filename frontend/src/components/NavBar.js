@@ -3,11 +3,27 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import Avatar from "./Avatar";
+import axios from "axios";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // JSX for logged in user
   const loggedInIcons = (
     <>
       <NavLink
@@ -24,9 +40,44 @@ const NavBar = () => {
       >
         <i class="fa-solid fa-utensils"></i>Recipes
       </NavLink>
-      {currentUser?.username}
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/savedrecipes"
+      >
+        <i className={`fas fa-bookmark ${styles.Icons}`} />
+        Saved Recipes
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/feed"
+      >
+        <i className={`fa-solid fa-rss ${styles.Icons}`} />
+        Feed
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/liked"
+      >
+        <i className={`fas fa-thumbs-up ${styles.Icons}`} />
+        Liked
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text="Profile" height={35} />
+      </NavLink>
+      <NavLink className={styles.NavLink} onClick={handleSignOut} to="/">
+        <i className={`fas fa-sign-out-alt ${styles.Icons}`} />
+        Sign Out
+      </NavLink>
     </>
   );
+
+  // JSX for logged out user
   const loggedOutIcons = (
     <>
       <NavLink
