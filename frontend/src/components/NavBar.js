@@ -123,6 +123,7 @@ const NavBar = () => {
             <img src={logo} alt="logo" height="50" />
           </Navbar.Brand>
         </NavLink>
+        {currentUser && addPostIcon}
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}

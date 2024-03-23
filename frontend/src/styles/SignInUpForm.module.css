@@ -1,5 +1,5 @@
 .Row {
-  height: calc(100vh - 81px);
+  height: calc(100vh - 100px);
 }
 .Input {
   background: #ffffff;
@@ -67,7 +67,6 @@ button {
 }
 
 button:after {
-  content: "»";
   position: absolute;
   opacity: 0;
   top: 10px;

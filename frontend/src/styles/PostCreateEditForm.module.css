@@ -1,3 +1,38 @@
 .Container {
-  min-height: 343px;
+  min-height: 350px;
+}
+
+.Submit {
+  background-color: #663d16;
+  border-color: #663d16;
+}
+
+.Submit:hover,
+.Submit:focus {
+  background-color: #555555;
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+  transition: all 0.5s;
+  color: #ebb833;
+}
+
+button {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button:after {
+  position: absolute;
+  opacity: 0;
+  top: 4px;
+  right: -20px;
+  transition: 0.3s;
+}
+
+button:hover:after {
+  opacity: 1;
+  right: 3px;
+  border-color: #663d16;
 }
