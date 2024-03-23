@@ -25,6 +25,17 @@ const NavBar = () => {
     }
   };
 
+  // Example of makeing a post for Chef Recipes
+  const addPostIcon = (
+    <NavLink
+      className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="/posts/create"
+    >
+      <i className="fas fa-pencil-alt"></i>Add post
+    </NavLink>
+  );
+
   // JSX for logged in user
   const loggedInIcons = (
     <>
