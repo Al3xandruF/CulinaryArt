@@ -25,7 +25,7 @@ const NavBar = () => {
     }
   };
 
-  // Example of makeing a post for Chef Recipes
+  // Example of making a post for Chef Recipes
   const addPostIcon = (
     <NavLink
       className={styles.NavLink}
