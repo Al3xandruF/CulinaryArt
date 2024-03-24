@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-
+import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
 import Asset from "../../components/Asset";
@@ -20,19 +20,39 @@ import Upload from "../../assets/upload.jpeg";
 function RecipeCreateForm() {
   const [errors, setErrors] = useState({});
 
-  const [postData, setPostData] = useState({
+  const [recipeData, setRecipeData] = useState({
+    recipe_title: "",
+    recipe_description: "",
+    ingredients: "",
+    cooking_time: "",
+    difficulty: "",
+    servings: "",
+    calories: "",
+    image: "",
+    recipe_preparation: "",
     title: "",
     content: "",
-    image: "",
   });
-  const { title, content, image } = postData;
+  const {
+    recipe_title,
+    recipe_description,
+    ingredients,
+    cooking_time,
+    difficulty,
+    servings,
+    calories,
+    image,
+    recipe_preparation,
+    title,
+    content,
+  } = recipeData;
 
   const imageInput = useRef(null);
   const history = useHistory();
 
   const handleChange = (event) => {
-    setPostData({
-      ...postData,
+    setRecipeData({
+      ...recipeData,
       [event.target.name]: event.target.value,
     });
   };
@@ -40,8 +60,8 @@ function RecipeCreateForm() {
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
-      setPostData({
-        ...postData,
+      setRecipeData({
+        ...recipeData,
         image: URL.createObjectURL(event.target.files[0]),
       });
     }
@@ -51,15 +71,21 @@ function RecipeCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("title", title);
-    formData.append("content", content);
+    formData.append("recipe_title", recipe_title);
+    formData.append("recipe_description", recipe_description);
+    formData.append("ingredients", ingredients);
+    formData.append("cooking_time", cooking_time);
+    formData.append("difficulty", difficulty);
+    formData.append("servings", servings);
+    formData.append("calories", calories);
     formData.append("image", imageInput.current.files[0]);
+    formData.append("recipe_preparation", recipe_preparation);
 
     try {
       const { data } = await axiosReq.post("/recipes/", formData);
       history.push(`/recipes/${data.id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

@@ -26,13 +26,13 @@ const NavBar = () => {
   };
 
   // Example of making a post for Chef Recipes
-  const addPostIcon = (
+  const addRecipeIcon = (
     <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/posts/create"
+      to="/recipes/create"
     >
-      <i className="fas fa-pencil-alt"></i>Add post
+      <i className="fas fa-pencil-alt"></i>Add recipe
     </NavLink>
   );
 
@@ -123,7 +123,7 @@ const NavBar = () => {
             <img src={logo} alt="logo" height="50" />
           </Navbar.Brand>
         </NavLink>
-        {currentUser && addPostIcon}
+        {currentUser && addRecipeIcon}
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
