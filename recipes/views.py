@@ -13,7 +13,7 @@ class RecipeList(generics.ListCreateAPIView):
     """
 
     serializer_class = RecipeSerializer
-    permission_classes = [IsChefOrReadOnly]
+    permission_classes = [IsAuthenticated, IsChefOrReadOnly]
     queryset = Recipe.objects.annotate(
         likes_count=Count("likes", distinct=True),
         saved_count=Count("saved", distinct=True),
@@ -50,7 +50,7 @@ class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     """
 
     serializer_class = RecipeSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     queryset = Recipe.objects.annotate(
         comments_count=Count("recipecomment", distinct=True),
         likes_count=Count("likes", distinct=True),
